@@ -58,4 +58,6 @@ msg2 := "second message" //compiler resolves this declaration to type string
 msg2 = "third message" //note that := can be used only once at time of declaration
 ```
 
-Variables can be declared outside functions, but can't be given a value there. Value should be assigned inisde a function only
+Variables can be declared outside functions, but can't be given a value there. Value should be assigned inside a function only.
+
+### 
