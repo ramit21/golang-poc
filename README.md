@@ -12,7 +12,7 @@ Steps to run the poc: (on Windows)
 
 3) Execute the command 'go build' to create the executable
 
-4) Run the executable: 'golang-poc'
+4) Run the executable: 'm.exe'
 
 5) Run the executable passing runtime arguments: 'golang-poc -name=Your_name'
 
@@ -29,7 +29,7 @@ Now execute the script as './golang-poc -name=Your_name'
 
 ### Go Cli
 1. go build: compiles a bunch of go source code files.
-2. go run <file-name>: compiles and executes a given go file.
+2. go run <file-name>: compiles and executes a given go file. If using functions from other go files, give them all in run command: eg. 'go run main.go deck.go'
 3. go fmt: format all files in current directory.
 4. go install: install a package.
 5. go get: download raw code of someone else's package.
@@ -60,4 +60,32 @@ msg2 = "third message" //note that := can be used only once at time of declarati
 
 Variables can be declared outside functions, but can't be given a value there. Value should be assigned inside a function only.
 
-### 
+### Array vs Slices
+
+Array is of fixed length, whereas slices are arrays that can grow or shrink.
+```
+myVal := []string{"val1", "val2"} 
+myVal = append(myVal, "val3") //Appending a value to a sclice, actually recreates the slice
+
+for i, myVal := range myVal { 
+    fmt.Println(i, myVal)
+}
+```
+
+Arrays and slices support range syntax as in Python: myArr[1:3] etc.
+
+### Multiple return types
+
+Go functions can return multiple return values:
+```
+func getEmployee()
+```
+
+### Custom types with receiver functions
+Go doesn't support OOPS per say. But you can simulate the behaviour using custom types.
+
+Custom types extend one of the basic data types of string, integer, float, map, array, slice.
+
+Function with a receiver is like a 'method', a function that belongs to an 'instance'. 
+
+See eg. of deck.go on how to define custom types with their reference functions.
