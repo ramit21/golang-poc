@@ -22,9 +22,9 @@ func main() {
 
     //calling a receiver function on a reference of a custom type
     cards := newDeck()
-    cards.print()
-
-
+    cards.saveToFile("./deckfile.txt")
+    cardFromfile := cards.newDeckFromFile("./deckfile.txt");
+    cardFromfile.print()
     // Basic flag declarations (passed from command line at time of execution) are available for string, integer, and boolean options. 
     // Here we declare a string flag `name` with a default value `"world"` and a short description.
     // This `flag.String` function returns a string pointer (not a string value)

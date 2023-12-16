@@ -12,9 +12,9 @@ Steps to run the poc: (on Windows)
 
 3) Execute the command 'go build' to create the executable
 
-4) Run the executable: 'm.exe'
+4) Run the executable: 'demo.exe'. Name of the executable is taken as specified in the go.mod file
 
-5) Run the executable passing runtime arguments: 'golang-poc -name=Your_name'
+5) Run the executable passing runtime arguments: 'demo -name=Your_name'
 
 6) Run 'golang-poc -h' to see the help menu with all the run time arguments defined for the application
 
@@ -78,7 +78,11 @@ Arrays and slices support range syntax as in Python: myArr[1:3] etc.
 
 Go functions can return multiple return values:
 ```
-func getEmployee()
+func getEmployee() {
+    return 'Ramit', 1
+}
+
+name, id = getEmployee()
 ```
 
 ### Custom types with receiver functions
@@ -89,3 +93,10 @@ Custom types extend one of the basic data types of string, integer, float, map, 
 Function with a receiver is like a 'method', a function that belongs to an 'instance'. 
 
 See eg. of deck.go on how to define custom types with their reference functions.
+
+### Type conversions
+Go supports type conversions with valid data types. 
+See deck.go for example.
+We need to convert a custom type deck into a byte array for the method that saves data to file.
+So basically we need to do conversions like this: deck -> []string -> string -> []byte.
+In deck.go file, we do some of the conversions in toString function, and rest in saveToFile function.
