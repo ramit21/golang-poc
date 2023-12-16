@@ -100,3 +100,10 @@ See deck.go for example.
 We need to convert a custom type deck into a byte array for the method that saves data to file.
 So basically we need to do conversions like this: deck -> []string -> string -> []byte.
 In deck.go file, we do some of the conversions in toString function, and rest in saveToFile function.
+
+### Unit testing
+Run **go test** to run test cases.
+Test files are named *_test.go. 
+There are no explicit asserts, but we throw errors in test cases if results not as per expectations.
+If no error thrown, then 'go test' would show 'PASS'.
+
