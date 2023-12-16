@@ -106,6 +106,16 @@ func printPointer(namePointer *string) {
 *pointer -> Gives the value this memory address is pointing to
 ```
 
+### Maps
+Key-value pairs. All keys are of same data type, and all values are of same data types. eg:
+```
+colorCodes := map[int]string { //this tells that keys are of type int and values are of type string
+    1: "red",
+    2: "blue"
+}
+```
+Maps behave as pass by reference.
+
 ### Multiple return types
 
 Go functions can return multiple return values:
@@ -128,6 +138,8 @@ See eg. of deck.go on how to define custom types with their reference functions.
 
 ### structs
 Group data together along with receiver functions. 
+
+All data members in struct are given default values as per their data type.
 
 You can have structs within a struct. See employee.go for example.
 

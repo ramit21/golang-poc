@@ -42,7 +42,18 @@ func main() {
     //jim.updateName("jimmy")
 	jim.print()
 
-
+    //maps
+    colorCodes := map[int]string { //this tells that keys are of type int and values are of type string
+        1: "red",
+        2: "blue",
+    }
+    colorCodes[3] = "Pink"
+    //fmt.Println(colorCodes)
+    //iterate over map keys:
+    for colorCode, color := range colorCodes {
+        fmt.Println("Color code for" , color , "is", colorCode)
+    }
+  
     // Basic flag declarations (passed from command line at time of execution) are available for string, integer, and boolean options. 
     // Here we declare a string flag `name` with a default value "world" and a short description.
     // This `flag.String` function returns a string pointer (not a string value), that's why we refer to the value using a *, ie *namePtr.
