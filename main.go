@@ -25,9 +25,27 @@ func main() {
     cards.saveToFile("./deckfile.txt")
     cardFromfile := cards.newDeckFromFile("./deckfile.txt");
     cardFromfile.print()
+
+    //passing struct using pointers for pass by reference
+    jim := person{
+		firstName: "Jim",
+		lastName:  "Party",
+		contactInfo: contactInfo{ //nested struct
+			email:   "jim@gmail.com",
+			zipCode: 94000,
+		},
+	}
+	jimPointer := &jim
+	jimPointer.updateName("jimmy")
+    //Pointer shortcut: Alternatively, Go provides a cleaner way to write above 2 sentences in one line, 
+    //just say below instead, and Go internally will treat it as the 2 lines above:
+    //jim.updateName("jimmy")
+	jim.print()
+
+
     // Basic flag declarations (passed from command line at time of execution) are available for string, integer, and boolean options. 
-    // Here we declare a string flag `name` with a default value `"world"` and a short description.
-    // This `flag.String` function returns a string pointer (not a string value)
+    // Here we declare a string flag `name` with a default value "world" and a short description.
+    // This `flag.String` function returns a string pointer (not a string value), that's why we refer to the value using a *, ie *namePtr.
     namePtr := flag.String("name", "World", "Default name (optional)")
     flag.Parse()
     fmt.Println("Hello", *namePtr)

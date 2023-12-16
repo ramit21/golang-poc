@@ -74,6 +74,38 @@ for i, myVal := range myVal {
 
 Arrays and slices support range syntax as in Python: myArr[1:3] etc.
 
+Internally slice is also saved as an array object only.
+The slice variable points to an object in memory that has details about the slice like its length, and a pointer to the actual array object in the memory.
+
+That's the reason why slice is pass by reference as opposed to array's pass by value. Basically the main data structure of slice having metadata about slice and the pointer to array in memory is copied over and passed over, but as you see, the underlying array is still the same. 
+
+### Pass by value vs pass by reference and pointers
+
+Everything in Golang is pass by value. Even if you pass a pointer, and print its address using &, it will be different from original value. Just that both pointers would be pointing to the same underlying object, so it would behave as pass by reference.
+
+```
+func main(){
+    name:= "abc"
+    namePointer:=&name
+    fmt.Println(namePointer) //prints different value than below
+    printPointer(namePointer)
+}
+
+func printPointer(namePointer *string) {
+    fmt.Println(&namePointer)
+}
+
+```
+
+**Pass by reference**(those who behave as if pass by reference): slices, maps, channels, pointers, functions.
+
+**Pass by value**: Basic types: int, float, string, bool, and structs. To make these objects pass by reference, Golang provides pointers.
+
+```
+&varName -> gives memory address of the value this variable is pointing at
+*pointer -> Gives the value this memory address is pointing to
+```
+
 ### Multiple return types
 
 Go functions can return multiple return values:
@@ -93,6 +125,22 @@ Custom types extend one of the basic data types of string, integer, float, map, 
 Function with a receiver is like a 'method', a function that belongs to an 'instance'. 
 
 See eg. of deck.go on how to define custom types with their reference functions.
+
+### structs
+Group data together along with receiver functions. 
+
+You can have structs within a struct. See employee.go for example.
+
+To update values in struct, pass them around using pointers to mimic pass by reference.
+
+Note the pointer shortcut supported by Go when calling reference functions on struct objects in main.go:
+
+```
+jim.updateName("jimmy") //is treated equivalet to below 2 lines:
+
+jimPointer := &jim
+jimPointer.updateName("jimmy")
+```
 
 ### Type conversions
 Go supports type conversions with valid data types. 
