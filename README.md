@@ -182,3 +182,11 @@ Any type that is implementing all functions (with same name and arguments) as th
 to be of type implementing that interface.
 
 Take a look at inheritance.go, on how the square struct is implementing shape interface, but rectange interface doesn't.
+
+golang provided packages make heavy use of interfaces.
+
+### Channels
+
+
+### Go Routines
+
