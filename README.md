@@ -185,8 +185,22 @@ Take a look at inheritance.go, on how the square struct is implementing shape in
 
 golang provided packages make heavy use of interfaces.
 
-### Channels
+### Channels and Go Routines
+Both are used for connurrency in Go.
 
+Use 'Go' keyword to launch a seperate thread (go Routine) to execute a function, seperate from the main calling thread.
+```
+go funcCall(args)
+```
 
-### Go Routines
+Channels are used to share data across go routines and the mmain calling code. Channels are defined of specific type, and only that kind of data can be put into it.
 
+Channels can also be listened to in the main calling code to wait for all the threads to complete, else main code would exit before the threads launched finish.
+
+```
+channel <- 5 //send value 5 into a channel
+myNumber <- channel //wait for a value to be assigned to a variable
+fmt.Println(<-channel) //wait for a value to be sent into the channel. When we get one, log it out immediately.
+```
+
+See the example of sitechecker.go, where we check a group of websites if they are reachable or not, as separate threads, without blocking each other using go routines and channels.
