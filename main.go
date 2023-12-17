@@ -79,4 +79,22 @@ func main() {
     resp.Body().Read(bs)
     fmt.Println(string(bs))
     */
+
+    //Calling site checker go routines
+    links := []string{
+		"http://google.com",
+		"http://facebook.com",
+		"http://stackoverflow.com",
+		"http://golang.org",
+		"http://amazon.com",
+	}
+
+	c := make(chan string)
+
+	for _, link := range links {
+		go checkLink(link, c)
+	}
+	for i := 0; i < len(links); i++ {
+		fmt.Println(<-c) //Making main calling code to wait for all threads to send value to this channel.
+	}
 }
