@@ -3,6 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
+	"io"
 	"net/http"
 	"os"
 	//"./commands"
@@ -71,4 +72,11 @@ func main() {
 		os.Exit(1)
 	}
 	fmt.Println(resp)
+    fmt.Println("Now printing response body")
+    io.Copy(os.Stdout, resp.Body)
+    /* Above line is equivalent to:
+    bs := make([]byte, 99999)
+    resp.Body().Read(bs)
+    fmt.Println(string(bs))
+    */
 }

@@ -176,4 +176,9 @@ There are no explicit asserts, but we throw errors in test cases if results not 
 If no error thrown, then 'go test' would show 'PASS'.
 
 ### Interfaces
+Interfaces are contractors that basically help to manage types.
+There is no explicit 'implements interface'.
+Any type that is implementing all functions (with same name and arguments) as the interface function, gets promoted 
+to be of type implementing that interface.
 
+Take a look at inheritance.go, on how the square struct is implementing shape interface, but rectange interface doesn't.
