@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"net/http"
+	"os"
 	//"./commands"
 )
 
@@ -11,6 +13,14 @@ import (
 // Go provides a `flag` package supporting basic command-line flag parsing.
 
 func main() {
+
+    // Basic flag declarations (passed from command line at time of execution) are available for string, integer, and boolean options. 
+    // Here we declare a string flag `name` with a default value "world" and a short description.
+    // This `flag.String` function returns a string pointer (not a string value), that's why we refer to the value using a *, ie *namePtr.
+    namePtr := flag.String("name", "World", "Default name (optional)")
+    flag.Parse()
+    fmt.Println("Hello", *namePtr)
+
 	//Calling a method from a different file in the same package does not require an import
     //welcome()
 
@@ -54,10 +64,11 @@ func main() {
         fmt.Println("Color code for" , color , "is", colorCode)
     }
   
-    // Basic flag declarations (passed from command line at time of execution) are available for string, integer, and boolean options. 
-    // Here we declare a string flag `name` with a default value "world" and a short description.
-    // This `flag.String` function returns a string pointer (not a string value), that's why we refer to the value using a *, ie *namePtr.
-    namePtr := flag.String("name", "World", "Default name (optional)")
-    flag.Parse()
-    fmt.Println("Hello", *namePtr)
+    //Making http calls
+    resp, err := http.Get("http://google.com")
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+	fmt.Println(resp)
 }

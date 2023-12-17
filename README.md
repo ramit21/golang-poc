@@ -60,25 +60,6 @@ msg2 = "third message" //note that := can be used only once at time of declarati
 
 Variables can be declared outside functions, but can't be given a value there. Value should be assigned inside a function only.
 
-### Array vs Slices
-
-Array is of fixed length, whereas slices are arrays that can grow or shrink.
-```
-myVal := []string{"val1", "val2"} 
-myVal = append(myVal, "val3") //Appending a value to a sclice, actually recreates the slice
-
-for i, myVal := range myVal { 
-    fmt.Println(i, myVal)
-}
-```
-
-Arrays and slices support range syntax as in Python: myArr[1:3] etc.
-
-Internally slice is also saved as an array object only.
-The slice variable points to an object in memory that has details about the slice like its length, and a pointer to the actual array object in the memory.
-
-That's the reason why slice is pass by reference as opposed to array's pass by value. Basically the main data structure of slice having metadata about slice and the pointer to array in memory is copied over and passed over, but as you see, the underlying array is still the same. 
-
 ### Pass by value vs pass by reference and pointers
 
 Everything in Golang is pass by value. Even if you pass a pointer, and print its address using &, it will be different from original value. Just that both pointers would be pointing to the same underlying object, so it would behave as pass by reference.
@@ -104,6 +85,33 @@ func printPointer(namePointer *string) {
 ```
 &varName -> gives memory address of the value this variable is pointing at
 *pointer -> Gives the value this memory address is pointing to
+```
+
+### Array vs Slices
+
+Array is of fixed length, whereas slices are arrays that can grow or shrink.
+```
+myVal := []string{"val1", "val2"} 
+myVal = append(myVal, "val3") //Appending a value to a sclice, actually recreates the slice
+
+for i, myVal := range myVal { 
+    fmt.Println(i, myVal)
+}
+```
+
+Arrays and slices support range syntax as in Python: myArr[1:3] etc.
+
+Internally slice is also saved as an array object only.
+The slice variable points to an object in memory that has details about the slice like its length, and a pointer to the actual array object in the memory.
+
+That's the reason why slice is pass by reference as opposed to array's pass by value. Basically the main data structure of slice having metadata about slice and the pointer to array in memory is copied over and passed over, but as you see, the underlying array is still the same. 
+
+If you look at Reader interface: https://pkg.go.dev/io#Reader, it takes a byte slice as input, and in response it ony returns no of bytes read, and the error object. But where is the data read? The data is put into the the byte slice being passed as argument, and since it's pass by reference, the calling code gets the value in the object it had passed to the reader call.
+
+```
+type Reader interface {
+	Read(p []byte) (n int, err error)
+}
 ```
 
 ### Maps
@@ -166,4 +174,6 @@ Run **go test** to run test cases.
 Test files are named *_test.go. 
 There are no explicit asserts, but we throw errors in test cases if results not as per expectations.
 If no error thrown, then 'go test' would show 'PASS'.
+
+### Interfaces
 
