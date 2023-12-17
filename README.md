@@ -204,3 +204,21 @@ fmt.Println(<-channel) //wait for a value to be sent into the channel. When we g
 ```
 
 See the example of sitechecker.go, where we check a group of websites if they are reachable or not, as separate threads, without blocking each other using go routines and channels.
+
+Golang proves a Sleep() function which can be used to pause a function.
+
+### Function literals
+
+Function literals in Golang are also known as anonymous functions or lambdas. They are functions that are defined without a name and can be used as values or arguments. Function literals can also access variables from the surrounding scope, creating a closure. A closure is a function that can share and modify variables that are defined outside of its own scope.
+
+```
+func main() {
+    // Define a function literal that takes two integers and returns their sum
+    add := func(x, y int) int {
+        return x + y
+    }
+    // Call the function literal with arguments 3 and 4
+    result := add(3, 4)
+    fmt.Println(result) // prints 7
+}
+```
