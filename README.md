@@ -186,7 +186,7 @@ Take a look at inheritance.go, on how the square struct is implementing shape in
 golang provided packages make heavy use of interfaces.
 
 ### Channels and Go Routines
-Both are used for connurrency in Go.
+Both are used for connurrency (with blocking code) in Go.
 
 Use 'Go' keyword to launch a seperate thread (go Routine) to execute a function, seperate from the main calling thread.
 ```
